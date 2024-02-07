@@ -14,7 +14,7 @@ jobs:
         id: cache-providers
         with:
           path: .terraform/providers
-          key: ${{ runner.os }}-terraform-providers-${{ hashFiles('/terraform.lock.hcl') }}
+          key: ${{ runner.os }}-terraform-providers-${{ hashFiles('/.terraform.lock.hcl') }}
       - name: Install Terraform
         if: steps.cache-providers.outputs.cache-hit != 'true'
         run: |

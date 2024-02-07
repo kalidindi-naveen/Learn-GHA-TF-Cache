@@ -1,6 +1,5 @@
 provider "aws" {
   region = "us-east-1"
-  profile = "naveen2"
 }
 
 resource "aws_security_group" "allow_ssh" {
