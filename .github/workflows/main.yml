@@ -7,7 +7,7 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     container:
-      image: node:16
+      image: ubununtu
       options: --user root
     steps:
       - name: Checkout code
