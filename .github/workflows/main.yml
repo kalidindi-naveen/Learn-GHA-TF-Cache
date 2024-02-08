@@ -6,6 +6,8 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    container:
+      image: node:16
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
