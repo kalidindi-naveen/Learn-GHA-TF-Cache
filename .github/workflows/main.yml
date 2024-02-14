@@ -1,4 +1,4 @@
-name: Terraform Caching
+name: Terraform Cache
 on:
   workflow_dispatch:
   push:
@@ -20,8 +20,9 @@ jobs:
           path: .terraform/providers
           key: ${{ runner.os }}-terraform-providers-${{ hashFiles('/.terraform.lock.hcl') }}
           restore-keys: |
-            ${{ runner.os }}-terraform-providers
+            ${{ runner.os }}-terraform-providers-
       - name: Install Terraform
+        if: steps.cache-providers.outputs.cache-hit != 'true'
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.1.7"
@@ -32,7 +33,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Initialize Terraform
-        if: steps.cache-providers.outputs.cache-hit != 'true'
         run: terraform init
       - name: Validate Terraform
         run: terraform validate
