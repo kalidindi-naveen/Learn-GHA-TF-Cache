@@ -21,7 +21,7 @@ jobs:
           key: ${{ runner.os }}-terraform-providers-${{ hashFiles('/.terraform.lock.hcl') }}
           restore-keys: |
             ${{ runner.os }}-terraform-providers-${{ hashFiles('/.terraform.lock.hcl') }}
-            ${{ runner.os }}-terraform-providers-
+            ${{ runner.os }}-terraform-
       - name: Install Terraform
         if: steps.cache-providers.outputs.cache-hit != 'true'
         uses: hashicorp/setup-terraform@v3
